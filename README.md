@@ -12,7 +12,7 @@ What did you learn?
 - There were a lot of intricate details in this
 - OpenWeatherAPI is extensive
 - For loops are pretty cool
-- Apis can kind of be a pain
+- APIs can kind of be a pain
 
 ## Usage
 ![screenshot of pages](assets/screenshot.jpg?raw=true)
