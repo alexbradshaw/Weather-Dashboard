@@ -1,5 +1,5 @@
 var currentDate = document.getElementById('currentDate')
-var weatherIcon = document.getElementById('weatherIcon')
+var weatherEmoji = document.getElementById('weatherEmoji')
 var locationDiv = document.getElementById('location')
 var currentLocation = navigator.geolocation.getCurrentPosition(success, error)
 var apiKey = "7f797aeb2c4333e090bbfef3ca363921"
@@ -78,21 +78,21 @@ function success(position) {
                         }
                         currentCondition = data.current.weather[0].id
                         if (currentCondition == 800) {
-                            weatherIcon.innerHTML = '☀️'
+                            weatherEmoji.innerHTML = '☀️'
                         } else if (currentCondition == 801 || currentCondition == 802) {
-                            weatherIcon.innerHTML = '⛅'
+                            weatherEmoji.innerHTML = '⛅'
                         } else if (currentCondition == 803 || currentCondition == 804) {
-                            weatherIcon.innerHTML = '☁️'
+                            weatherEmoji.innerHTML = '☁️'
                         } else if (currentCondition >= 600 && currentCondition < 700) {
-                            weatherIcon.innerHTML = '❄️'
+                            weatherEmoji.innerHTML = '❄️'
                         } else if (currentCondition >= 500 && currentCondition < 600) {
-                            weatherIcon.innerHTML = '🌧️'
+                            weatherEmoji.innerHTML = '🌧️'
                         } else if (currentCondition >= 300 && currentCondition < 400) {
-                            weatherIcon.innerHTML = '☂️'
+                            weatherEmoji.innerHTML = '☂️'
                         } else if (currentCondition >= 200 && currentCondition < 300) {
-                            weatherIcon.innerHTML = '🌩️'
+                            weatherEmoji.innerHTML = '🌩️'
                         } else {
-                            weatherIcon.innerHTML = '🌪️'
+                            weatheweatherEmoji.innerHTML = '🌪️'
                         }
                     });
 
@@ -190,21 +190,21 @@ function success(position) {
                 }
                 currentCondition = data.current.weather[0].id
                 if (currentCondition == 800) {
-                    weatherIcon.innerHTML = '☀️'
+                    weatherEmoji.innerHTML = '☀️'
                 } else if (currentCondition == 801 || currentCondition == 802) {
-                    weatherIcon.innerHTML = '⛅'
+                    weatherEmoji.innerHTML = '⛅'
                 } else if (currentCondition == 803 || currentCondition == 804) {
-                    weatherIcon.innerHTML = '☁️'
+                    weatherEmoji.innerHTML = '☁️'
                 } else if (currentCondition >= 600 && currentCondition < 700) {
-                    weatherIcon.innerHTML = '❄️'
+                    weatherEmoji.innerHTML = '❄️'
                 } else if (currentCondition >= 500 && currentCondition < 600) {
-                    weatherIcon.innerHTML = '🌧️'
+                    weatherEmoji.innerHTML = '🌧️'
                 } else if (currentCondition >= 300 && currentCondition < 400) {
-                    weatherIcon.innerHTML = '☂️'
+                    weatherEmoji.innerHTML = '☂️'
                 } else if (currentCondition >= 200 && currentCondition < 300) {
-                    weatherIcon.innerHTML = '🌩️'
+                    weatherEmoji.innerHTML = '🌩️'
                 } else {
-                    weatherIcon.innerHTML = '🌪️'
+                    weatheweatherEmoji.innerHTML = '🌪️'
                 }
             });
 
@@ -352,21 +352,21 @@ searchHistory.addEventListener('click', function (event) {
                         }
                         currentCondition = data.current.weather[0].id
                         if (currentCondition == 800) {
-                            weatherIcon.innerHTML = '☀️'
+                            weatherEmoji.innerHTML = '☀️'
                         } else if (currentCondition == 801 || currentCondition == 802) {
-                            weatherIcon.innerHTML = '⛅'
+                            weatherEmoji.innerHTML = '⛅'
                         } else if (currentCondition == 803 || currentCondition == 804) {
-                            weatherIcon.innerHTML = '☁️'
+                            weatherEmoji.innerHTML = '☁️'
                         } else if (currentCondition >= 600 && currentCondition < 700) {
-                            weatherIcon.innerHTML = '❄️'
+                            weatherEmoji.innerHTML = '❄️'
                         } else if (currentCondition >= 500 && currentCondition < 600) {
-                            weatherIcon.innerHTML = '🌧️'
+                            weatherEmoji.innerHTML = '🌧️'
                         } else if (currentCondition >= 300 && currentCondition < 400) {
-                            weatherIcon.innerHTML = '☂️'
+                            weatherEmoji.innerHTML = '☂️'
                         } else if (currentCondition >= 200 && currentCondition < 300) {
-                            weatherIcon.innerHTML = '🌩️'
+                            weatherEmoji.innerHTML = '🌩️'
                         } else {
-                            weatherIcon.innerHTML = '🌪️'
+                            weatheweatherEmoji.innerHTML = '🌪️'
                         }
                     });
 
