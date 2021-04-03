@@ -1,4 +1,4 @@
-# Work-Day-Scheduler
+# Weather Dashboard
 
 ## Description
 Why did you build this project?
@@ -10,7 +10,7 @@ What problem does it solve?
 What did you learn?
 - I really enjoy js
 - There were a lot of intricate details in this
-- Openweatherapi is extensive
+- OpenWeatherAPI is extensive
 - For loops are pretty cool
 - Apis can kind of be a pain
 
