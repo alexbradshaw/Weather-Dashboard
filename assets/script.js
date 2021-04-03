@@ -44,118 +44,7 @@ function success(position) {
         // search bar location
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
             .then(response => response.json())
-            .then(function (data) {
-                console.log(data)
-                console.log(data.city.coord.lat, data.city.coord.lon)
-                var lat = data.city.coord.lat
-                var long = data.city.coord.lon
-                var todayUrl = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
-                var fiveDayUrl = ("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
-
-                fetch(todayUrl)
-                    .then(response => response.json())
-                    // current conditions
-                    .then(function (data) {
-                        console.log(data)
-                        currentTemp.textContent = data.current.temp
-                        currentHumidity.textContent = data.current.humidity
-                        currentWindSpeed.textContent = data.current.wind_speed
-                        currentUV.textContent = data.current.uvi
-                        currentUVI = JSON.parse(data.current.uvi)
-                        if (currentUVI > 3 && currentUVI < 6) {
-                            currentUV.classList.add('uvWarning')
-                            currentUV.classList.remove('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        } else if (currentUVI > 6 && currentUVI < 9) {
-                            currentUV.classList.add('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        } else if (currentUVI > 9 && currentUVI < 12) {
-                            currentUV.classList.add('uvRealBad')
-                        } else {
-                            currentUV.classList.remove('uvWarning')
-                            currentUV.classList.remove('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        }
-                        currentCondition = data.current.weather[0].id
-                        if (currentCondition == 800) {
-                            weatherEmoji.innerHTML = '☀️'
-                        } else if (currentCondition == 801 || currentCondition == 802) {
-                            weatherEmoji.innerHTML = '⛅'
-                        } else if (currentCondition == 803 || currentCondition == 804) {
-                            weatherEmoji.innerHTML = '☁️'
-                        } else if (currentCondition >= 600 && currentCondition < 700) {
-                            weatherEmoji.innerHTML = '❄️'
-                        } else if (currentCondition >= 500 && currentCondition < 600) {
-                            weatherEmoji.innerHTML = '🌧️'
-                        } else if (currentCondition >= 300 && currentCondition < 400) {
-                            weatherEmoji.innerHTML = '☂️'
-                        } else if (currentCondition >= 200 && currentCondition < 300) {
-                            weatherEmoji.innerHTML = '🌩️'
-                        } else {
-                            weatheweatherEmoji.innerHTML = '🌪️'
-                        }
-                    });
-
-                // current city
-                fetch(fiveDayUrl)
-                    .then(response => response.json())
-                    .then(function (data) {
-                        locationDiv.textContent = data.city.name + ' Weather '
-                    });
-
-                // five day forecast
-                fetch(fiveDayUrl)
-                    .then(response => response.json())
-                    .then(function (data) {
-                        console.log(data)
-
-                        humidityArray = [
-                            data.list[6].main.humidity,
-                            data.list[14].main.humidity,
-                            data.list[22].main.humidity,
-                            data.list[30].main.humidity,
-                            data.list[38].main.humidity]
-
-                        tempArray = [
-                            data.list[6].main.temp,
-                            data.list[14].main.temp,
-                            data.list[22].main.temp,
-                            data.list[30].main.temp,
-                            data.list[38].main.temp]
-
-                        currentCondition = [
-                            data.list[6].weather[0].id,
-                            data.list[14].weather[0].id,
-                            data.list[22].weather[0].id,
-                            data.list[30].weather[0].id,
-                            data.list[38].weather[0].id
-                        ]
-                        // forecast info updater
-                        for (var i = 0; i < 5; i++) {
-                            day = document.getElementById('day' + i + 'Info')
-                            daysInfo = ("Temperature: " + tempArray[i] + " ℉<br>" + "Humidity: " + humidityArray[i] + '%')
-                            day.innerHTML = daysInfo
-                            weatherIcon = document.getElementById('weatherIcon' + i)
-                            if (currentCondition[i] == 800) {
-                                weatherIcon.innerHTML = '☀️'
-                            } else if (currentCondition[i] == 801 || currentCondition[i] == 802) {
-                                weatherIcon.innerHTML = '⛅'
-                            } else if (currentCondition[i] == 803 || currentCondition[i] == 804) {
-                                weatherIcon.innerHTML = '☁️'
-                            } else if (currentCondition[i] >= 600 && currentCondition[i] < 700) {
-                                weatherIcon.innerHTML = '❄️'
-                            } else if (currentCondition[i] >= 500 && currentCondition[i] < 600) {
-                                weatherIcon.innerHTML = '🌧️'
-                            } else if (currentCondition[i] >= 300 && currentCondition[i] < 400) {
-                                weatherIcon.innerHTML = '☂️'
-                            } else if (currentCondition[i] >= 200 && currentCondition[i] < 300) {
-                                weatherIcon.innerHTML = '🌩️'
-                            } else {
-                                weatherIcon.innerHTML = '🌪️'
-                            }
-                        }
-                    });
-            })
+            .then(fetchWebsite)
     } else {
         // current location weather
         var lat = position.coords.latitude
@@ -166,109 +55,20 @@ function success(position) {
         fetch(todayUrl)
             .then(response => response.json())
             // current conditions
-            .then(function (data) {
-                console.log(data)
-                currentTemp.textContent = data.current.temp
-                currentHumidity.textContent = data.current.humidity
-                currentWindSpeed.textContent = data.current.wind_speed
-                currentUV.textContent = data.current.uvi
-                currentCondition = data.current.weather[0].id
-                currentUVI = JSON.parse(data.current.uvi)
-                if (currentUVI > 3 && currentUVI < 6) {
-                    currentUV.classList.add('uvWarning')
-                    currentUV.classList.remove('uvOuch')
-                    currentUV.classList.remove('uvRealBad')
-                } else if (currentUVI > 6 && currentUVI < 9) {
-                    currentUV.classList.add('uvOuch')
-                    currentUV.classList.remove('uvRealBad')
-                } else if (currentUVI > 9 && currentUVI < 12) {
-                    currentUV.classList.add('uvRealBad')
-                } else {
-                    currentUV.classList.remove('uvWarning')
-                    currentUV.classList.remove('uvOuch')
-                    currentUV.classList.remove('uvRealBad')
-                }
-                currentCondition = data.current.weather[0].id
-                if (currentCondition == 800) {
-                    weatherEmoji.innerHTML = '☀️'
-                } else if (currentCondition == 801 || currentCondition == 802) {
-                    weatherEmoji.innerHTML = '⛅'
-                } else if (currentCondition == 803 || currentCondition == 804) {
-                    weatherEmoji.innerHTML = '☁️'
-                } else if (currentCondition >= 600 && currentCondition < 700) {
-                    weatherEmoji.innerHTML = '❄️'
-                } else if (currentCondition >= 500 && currentCondition < 600) {
-                    weatherEmoji.innerHTML = '🌧️'
-                } else if (currentCondition >= 300 && currentCondition < 400) {
-                    weatherEmoji.innerHTML = '☂️'
-                } else if (currentCondition >= 200 && currentCondition < 300) {
-                    weatherEmoji.innerHTML = '🌩️'
-                } else {
-                    weatheweatherEmoji.innerHTML = '🌪️'
-                }
-            });
+            .then(updateForecast);
 
         // current city
         fetch(fiveDayUrl)
             .then(response => response.json())
             .then(function (data) {
-                console.log(data)
+                // console.log(data)
                 locationDiv.textContent = data.city.name + ' Weather '
             });
 
         // five day forecast
         fetch(fiveDayUrl)
             .then(response => response.json())
-            .then(function (data) {
-                console.log(data)
-
-                humidityArray = [
-                    data.list[6].main.humidity,
-                    data.list[14].main.humidity,
-                    data.list[22].main.humidity,
-                    data.list[30].main.humidity,
-                    data.list[38].main.humidity]
-
-                tempArray = [
-                    data.list[6].main.temp,
-                    data.list[14].main.temp,
-                    data.list[22].main.temp,
-                    data.list[30].main.temp,
-                    data.list[38].main.temp]
-
-                currentCondition = [
-                    data.list[6].weather[0].id,
-                    data.list[14].weather[0].id,
-                    data.list[22].weather[0].id,
-                    data.list[30].weather[0].id,
-                    data.list[38].weather[0].id
-                ]
-
-                // forecast info updater
-                for (var i = 0; i < 5; i++) {
-                    day = document.getElementById('day' + i + 'Info')
-                    daysInfo = ("Temperature: " + tempArray[i] + " ℉<br>" + "Humidity: " + humidityArray[i] + '%')
-                    day.innerHTML = daysInfo
-                    weatherIcon = document.getElementById('weatherIcon' + i)
-                    if (currentCondition[i] == 800) {
-                        weatherIcon.innerHTML = '☀️'
-                    } else if (currentCondition[i] == 801 || currentCondition[i] == 802) {
-                        weatherIcon.innerHTML = '⛅'
-                    } else if (currentCondition[i] == 803 || currentCondition[i] == 804) {
-                        weatherIcon.innerHTML = '☁️'
-                    } else if (currentCondition[i] >= 600 && currentCondition[i] < 700) {
-                        weatherIcon.innerHTML = '❄️'
-                    } else if (currentCondition[i] >= 500 && currentCondition[i] < 600) {
-                        weatherIcon.innerHTML = '🌧️'
-                    } else if (currentCondition[i] >= 300 && currentCondition[i] < 400) {
-                        weatherIcon.innerHTML = '☂️'
-                    } else if (currentCondition[i] >= 200 && currentCondition[i] < 300) {
-                        weatherIcon.innerHTML = '🌩️'
-                    } else {
-                        weatherIcon.innerHTML = '🌪️'
-                    }
-                }
-            });
+            .then(updateFiveDayForecast);
     }
 }
 
@@ -318,119 +118,128 @@ searchHistory.addEventListener('click', function (event) {
     if (elementCheck.includes('search')) {
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
             .then(response => response.json())
-            .then(function (data) {
-                console.log(data)
-                console.log(data.city.coord.lat, data.city.coord.lon)
-                var lat = data.city.coord.lat
-                var long = data.city.coord.lon
-                var todayUrl = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
-                var fiveDayUrl = ("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
-
-                fetch(todayUrl)
-                    .then(response => response.json())
-                    // current conditions
-                    .then(function (data) {
-                        console.log(data)
-                        currentTemp.textContent = data.current.temp
-                        currentHumidity.textContent = data.current.humidity
-                        currentWindSpeed.textContent = data.current.wind_speed
-                        currentUV.textContent = data.current.uvi
-                        currentUVI = JSON.parse(data.current.uvi)
-                        if (currentUVI > 3 && currentUVI < 6) {
-                            currentUV.classList.add('uvWarning')
-                            currentUV.classList.remove('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        } else if (currentUVI > 6 && currentUVI < 9) {
-                            currentUV.classList.add('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        } else if (currentUVI > 9 && currentUVI < 12) {
-                            currentUV.classList.add('uvRealBad')
-                        } else {
-                            currentUV.classList.remove('uvWarning')
-                            currentUV.classList.remove('uvOuch')
-                            currentUV.classList.remove('uvRealBad')
-                        }
-                        currentCondition = data.current.weather[0].id
-                        if (currentCondition == 800) {
-                            weatherEmoji.innerHTML = '☀️'
-                        } else if (currentCondition == 801 || currentCondition == 802) {
-                            weatherEmoji.innerHTML = '⛅'
-                        } else if (currentCondition == 803 || currentCondition == 804) {
-                            weatherEmoji.innerHTML = '☁️'
-                        } else if (currentCondition >= 600 && currentCondition < 700) {
-                            weatherEmoji.innerHTML = '❄️'
-                        } else if (currentCondition >= 500 && currentCondition < 600) {
-                            weatherEmoji.innerHTML = '🌧️'
-                        } else if (currentCondition >= 300 && currentCondition < 400) {
-                            weatherEmoji.innerHTML = '☂️'
-                        } else if (currentCondition >= 200 && currentCondition < 300) {
-                            weatherEmoji.innerHTML = '🌩️'
-                        } else {
-                            weatheweatherEmoji.innerHTML = '🌪️'
-                        }
-                    });
-
-                // current city
-                fetch(fiveDayUrl)
-                    .then(response => response.json())
-                    .then(function (data) {
-                        locationDiv.textContent = data.city.name + ' Weather '
-                    });
-
-                // five day forecast
-                fetch(fiveDayUrl)
-                    .then(response => response.json())
-                    .then(function (data) {
-                        console.log(data)
-
-                        humidityArray = [
-                            data.list[6].main.humidity,
-                            data.list[14].main.humidity,
-                            data.list[22].main.humidity,
-                            data.list[30].main.humidity,
-                            data.list[38].main.humidity]
-
-                        tempArray = [
-                            data.list[6].main.temp,
-                            data.list[14].main.temp,
-                            data.list[22].main.temp,
-                            data.list[30].main.temp,
-                            data.list[38].main.temp]
-
-                        currentCondition = [
-                            data.list[6].weather[0].id,
-                            data.list[14].weather[0].id,
-                            data.list[22].weather[0].id,
-                            data.list[30].weather[0].id,
-                            data.list[38].weather[0].id
-                        ]
-                        
-                        // forecast info updater
-                        for (var i = 0; i < 5; i++) {
-                            day = document.getElementById('day' + i + 'Info')
-                            daysInfo = ("Temperature: " + tempArray[i] + " ℉<br>" + "Humidity: " + humidityArray[i] + '%')
-                            day.innerHTML = daysInfo
-                            weatherIcon = document.getElementById('weatherIcon' + i)
-                            if (currentCondition[i] == 800) {
-                                weatherIcon.innerHTML = '☀️'
-                            } else if (currentCondition[i] == 801 || currentCondition[i] == 802) {
-                                weatherIcon.innerHTML = '⛅'
-                            } else if (currentCondition[i] == 803 || currentCondition[i] == 804) {
-                                weatherIcon.innerHTML = '☁️'
-                            } else if (currentCondition[i] >= 600 && currentCondition[i] < 700) {
-                                weatherIcon.innerHTML = '❄️'
-                            } else if (currentCondition[i] >= 500 && currentCondition[i] < 600) {
-                                weatherIcon.innerHTML = '🌧️'
-                            } else if (currentCondition[i] >= 300 && currentCondition[i] < 400) {
-                                weatherIcon.innerHTML = '☂️'
-                            } else if (currentCondition[i] >= 200 && currentCondition[i] < 300) {
-                                weatherIcon.innerHTML = '🌩️'
-                            } else {
-                                weatherIcon.innerHTML = '🌪️'
-                            }
-                        }
-                    });
-            })
+            .then(fetchWebsite)
     }
 })
 
+// fetches current info and five day forecast
+function fetchWebsite(data) {
+    data
+    console.log(data)
+    console.log(data.city.coord.lat, data.city.coord.lon)
+    var lat = data.city.coord.lat
+    var long = data.city.coord.lon
+    var todayUrl = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
+    var fiveDayUrl = ("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + long + "&units=imperial&appid=" + apiKey)
+    fetch(todayUrl)
+    .then(response => response.json())
+    // current conditions
+    .then(updateForecast,console.log(data)),
+
+    // current city
+    fetch(fiveDayUrl)
+        .then(response => response.json())
+        .then(function (data) {
+            locationDiv.textContent = data.city.name + ' Weather '
+        }),
+
+    // five day forecast
+    fetch(fiveDayUrl)
+        .then(response => response.json())
+        .then(updateFiveDayForecast)
+};
+
+// updates current weather element with info and icon
+function updateForecast(data) {
+    data
+    // console.log(data)
+    currentTemp.textContent = data.current.temp
+    currentHumidity.textContent = data.current.humidity
+    currentWindSpeed.textContent = data.current.wind_speed
+    currentUV.textContent = data.current.uvi
+    currentUVI = JSON.parse(data.current.uvi)
+    if (currentUVI > 3 && currentUVI < 6) {
+        currentUV.classList.add('uvWarning')
+        currentUV.classList.remove('uvOuch')
+        currentUV.classList.remove('uvRealBad')
+    } else if (currentUVI > 6 && currentUVI < 9) {
+        currentUV.classList.add('uvOuch')
+        currentUV.classList.remove('uvRealBad')
+    } else if (currentUVI > 9 && currentUVI < 12) {
+        currentUV.classList.add('uvRealBad')
+    } else {
+        currentUV.classList.remove('uvWarning')
+        currentUV.classList.remove('uvOuch')
+        currentUV.classList.remove('uvRealBad')
+    }
+    currentCondition = data.current.weather[0].id
+    if (currentCondition == 800) {
+        weatherEmoji.innerHTML = '☀️'
+    } else if (currentCondition == 801 || currentCondition == 802) {
+        weatherEmoji.innerHTML = '⛅'
+    } else if (currentCondition == 803 || currentCondition == 804) {
+        weatherEmoji.innerHTML = '☁️'
+    } else if (currentCondition >= 600 && currentCondition < 700) {
+        weatherEmoji.innerHTML = '❄️'
+    } else if (currentCondition >= 500 && currentCondition < 600) {
+        weatherEmoji.innerHTML = '🌧️'
+    } else if (currentCondition >= 300 && currentCondition < 400) {
+        weatherEmoji.innerHTML = '☂️'
+    } else if (currentCondition >= 200 && currentCondition < 300) {
+        weatherEmoji.innerHTML = '🌩️'
+    } else {
+        weatheweatherEmoji.innerHTML = '🌪️'
+    }
+};
+
+// updates five day forecast element with info and icon
+function updateFiveDayForecast(data) {
+    data
+
+    humidityArray = [
+        data.list[6].main.humidity,
+        data.list[14].main.humidity,
+        data.list[22].main.humidity,
+        data.list[30].main.humidity,
+        data.list[38].main.humidity]
+
+    tempArray = [
+        data.list[6].main.temp,
+        data.list[14].main.temp,
+        data.list[22].main.temp,
+        data.list[30].main.temp,
+        data.list[38].main.temp]
+
+    currentCondition = [
+        data.list[6].weather[0].id,
+        data.list[14].weather[0].id,
+        data.list[22].weather[0].id,
+        data.list[30].weather[0].id,
+        data.list[38].weather[0].id
+    ]
+
+    // forecast info updater
+    for (var i = 0; i < 5; i++) {
+        day = document.getElementById('day' + i + 'Info')
+        daysInfo = ("Temperature: " + tempArray[i] + " ℉<br>" + "Humidity: " + humidityArray[i] + '%')
+        day.innerHTML = daysInfo
+        weatherIcon = document.getElementById('weatherIcon' + i)
+        if (currentCondition[i] == 800) {
+            weatherIcon.innerHTML = '☀️'
+        } else if (currentCondition[i] == 801 || currentCondition[i] == 802) {
+            weatherIcon.innerHTML = '⛅'
+        } else if (currentCondition[i] == 803 || currentCondition[i] == 804) {
+            weatherIcon.innerHTML = '☁️'
+        } else if (currentCondition[i] >= 600 && currentCondition[i] < 700) {
+            weatherIcon.innerHTML = '❄️'
+        } else if (currentCondition[i] >= 500 && currentCondition[i] < 600) {
+            weatherIcon.innerHTML = '🌧️'
+        } else if (currentCondition[i] >= 300 && currentCondition[i] < 400) {
+            weatherIcon.innerHTML = '☂️'
+        } else if (currentCondition[i] >= 200 && currentCondition[i] < 300) {
+            weatherIcon.innerHTML = '🌩️'
+        } else {
+            weatherIcon.innerHTML = '🌪️'
+        }
+    }
+}
