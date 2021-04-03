@@ -113,8 +113,8 @@ function createButton() {
 
 // made search history buttons clickable
 searchHistory.addEventListener('click', function (event) {
-    elementCheck = JSON.stringify(event.toElement.id)
-    city = document.getElementById(event.toElement.id).innerHTML
+    elementCheck = JSON.stringify(event.target.id)
+    city = document.getElementById(event.target.id).innerHTML
     if (elementCheck.includes('search')) {
         fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
             .then(response => response.json())
