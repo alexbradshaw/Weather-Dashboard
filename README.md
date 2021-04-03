@@ -14,6 +14,9 @@ What did you learn?
 - For loops are pretty cool
 - APIs can kind of be a pain
 
+Comments
+- I wasn't sure what to do when the initial page loaded so I made it use current location
+
 ## Usage
 ![screenshot of pages](assets/screenshot.jpg?raw=true)
 
