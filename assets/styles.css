@@ -1,0 +1,133 @@
+*{
+color: black;
+}
+
+.bigContainer{
+    width: 100%;
+}
+
+.currentLocationContainer{
+    border: black solid 1px;
+    margin: 1%;
+    margin-left: 21%;
+}
+
+.formSize{
+    padding-left: 2.5%
+}
+
+.searchButton{
+    display: flex;
+    justify-content: start;
+    background-color: blue;
+    margin-right: 15%;
+}
+
+.weatherJumbotron{
+    display: flex;
+    justify-content: start;
+    font-size: 40px;
+    padding: 2% 2% 1% 2%;
+}
+
+.innerData{
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 2%;
+}
+
+.searchButton:hover{
+    background-color: black;
+}
+
+.sidenav {
+    height: 100vh;
+    width: 20%;
+    background-color: #f8f9fa;
+    padding-top: 5px;
+    float: left;
+}
+
+.sidenav p {
+    padding-left: 2.5%;
+    font-size: 25px;
+    color: #818181;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    padding: 3%;
+    background-color: #343a40;
+}
+
+.cities{
+    margin-top: 3%;
+    margin-left: 3%;
+    width: 93%;
+}
+
+.cardTitle{
+    display: flex;
+    justify-content: center;
+    font-size: 27px;
+    color: white;
+    padding-top: 3%;
+}
+
+.fiveDayForecast{
+    padding: .5% 1%;
+}
+
+.fiveDayCards{
+    margin-left: 1%;
+    border: black 1px solid;
+    background-color: #3483eb;
+}
+
+.forecastHeader{
+    font-size: 35px;
+    padding-left: 21%
+}
+
+.searchHistoryButton{
+    display: flex;
+    justify-content: start;
+}
+
+.uvColor{
+    margin-left: 5px;
+    background-color: green;
+    padding: .5% 1%;
+    border: black .5px solid;
+    border-radius: 10%;
+}
+
+.uvWarning{
+    background-color: yellow;
+}
+
+.uvOuch{
+    background-color: red;
+}
+
+.uvRealBad{
+    background-color: purple;
+}
+
+.icon{
+    font-size: 40px;
+}
+
+.currentConditions{
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .weatherJumbotron{
+        font-size: 25px;
+    }
+  }

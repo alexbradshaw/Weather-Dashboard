@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+
+<body>
+    <header class="header">Weather Dashboard</header>
+
+    <div class="sidenav">
+        <p>Search for a city:</p>
+        <form class="d-flex formSize">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+            <button class="btn btn-outline-success searchButton" type="submit" id="searchButton">🔍</button>
+
+        </form>
+        <div class="card cities">
+            <ul class="list-group list-group-flush" id="citiesUL">
+            </ul>
+        </div>
+    </div>
+
+    <div class="bigContainer">
+        <div class="jumbotron jumbotron-fluid row currentLocationContainer">
+            <h1 class="display-4 column-12 weatherJumbotron "><span id="location" style="padding-right: 5px;">Current Location</span> (<span id="currentDate"></span>)<span id="weatherIcon"></span></h1>
+            <p class="lead innerData">Temperature: <span id="temp" style="padding-left: 5px;"></span>℉</p>
+            <p class="lead innerData">Humidity: <span id="humidity" style="padding-left: 5px;"></span>%</p>
+            <p class="lead innerData">Wind Speed: <span id="windSpeed" style="padding-left: 5px;"></span>MPH</p>
+            <p class="lead innerData">UV Index: <span id="uvIndex" class='uvColor'></span></p>
+        </div>
+        <div>
+            <h3 class="forecastHeader">Five Day Forecast:</h3>
+            <div class="row fiveDayForecast">
+                <div class="card col-lg fiveDayCards">
+                    <h5 class="card-title cardTitle" id=days0>Tomorrow</h5><span class="icon" id="weatherIcon0"></span>
+                    <div class="card-body currentConditions" id=day0Info>
+                        Current weather for tomorrow
+                    </div>
+                </div>
+                <div class="card col-lg fiveDayCards">
+                    <h5 class="card-title cardTitle" id=days1>Two Days From Now</h5><span class="icon" id="weatherIcon1"></span>
+                    <div class="card-body currentConditions" id=day1Info>
+                        Current weather for the day after tomorrow
+                    </div>
+                </div>
+                <div class="card col-lg fiveDayCards">
+                    <h5 class="card-title cardTitle" id=days2>Three Days From Now</h5><span class="icon" id="weatherIcon2"></span>
+                    <div class="card-body currentConditions" id=day2Info>
+                        Current weather for 3 days from now
+                    </div>
+                </div>
+                <div class="card col-lg fiveDayCards">
+                    <h5 class="card-title cardTitle" id=days3>Four Days From Now</h5><span class="icon" id="weatherIcon3"></span>
+                    <div class="card-body currentConditions" id=day3Info>
+                        Current weather for 4 days from now
+                    </div>
+                </div>
+                <div class="card col-lg fiveDayCards">
+                    <h5 class="card-title cardTitle" id=days4>Five Days From Now</h5><span class="icon" id="weatherIcon4"></span>
+                    <div class="card-body currentConditions" id=day4Info>
+                        Current weather for 5 days from now
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/open-weather/2.0.0/openweather.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src='./assets/script.js'> </script>
+
+</body>
+
+</html>
+
