@@ -29,6 +29,6 @@ creative commons
 
 ## Links to finished project
 
-- https://alexbradshaw.github.io/Work-Day-Scheduler/
+- https://alexbradshaw.github.io/Weather-Dashboard/
 
-- https://github.com/alexbradshaw/Work-Day-Scheduler
+- https://github.com/alexbradshaw/Weather-Dashboard

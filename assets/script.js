@@ -42,7 +42,7 @@ searchButton.addEventListener('click', function (event) {
 function success(position) {
     if (lightSwitch == 'on') {
         // search bar location
-        fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
+        fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
             .then(response => response.json())
             .then(function (data) {
                 console.log(data)
@@ -316,7 +316,7 @@ searchHistory.addEventListener('click', function (event) {
     elementCheck = JSON.stringify(event.toElement.id)
     city = document.getElementById(event.toElement.id).innerHTML
     if (elementCheck.includes('search')) {
-        fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
+        fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
             .then(response => response.json())
             .then(function (data) {
                 console.log(data)
