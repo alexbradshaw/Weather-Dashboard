@@ -130,4 +130,28 @@ color: black;
     .weatherJumbotron{
         font-size: 25px;
     }
+
+    .searchHistoryButton{
+        font-size: 12px;
+    }
+
+    .searchButton{
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        padding-top: 25%;
+        padding-bottom: 25%;
+        padding-left: 45%;
+        padding-right: 46%;
+        font-size: 12px;
+    }
+
+    .searchBar{
+        padding-right: 80%;
+    }
+
+    .formSize{
+        display: flex;
+        flex-wrap: wrap;
+    }
   }
