@@ -55,3 +55,8 @@ SOFTWARE.
 - https://alexbradshaw.github.io/Weather-Dashboard/
 
 - https://github.com/alexbradshaw/Weather-Dashboard
+
+
+## Contact Info
+
+- Email: alexanderbradshaw5@gmail.com
